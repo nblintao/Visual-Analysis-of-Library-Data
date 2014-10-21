@@ -1,8 +1,8 @@
 import random
 
-fp = open("id_frequency_recommand.csv","w")
+fp = open("../libvis/libvis_app/static/data/id_frequency_recommend.csv","w")
 
-fp.write("id,frequency,recommand\n")
+fp.write("id,frequency,recommend\n")
 
 id = 0
 
