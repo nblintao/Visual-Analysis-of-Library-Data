@@ -9,5 +9,9 @@ id = 0
 for i in xrange(1,10000):
     id += random.randint(1,100)
     frequency = random.randint(0,50)
-    recommand = random.randint(0,20)/20
-    fp.write("%d,%d,%d\n"%(id, frequency, recommand))
+    # recommend = random.randint(0,20)/20
+    if (frequency * random.random())>20:
+        recommend = 1
+    else:
+        recommend = 0
+    fp.write("%d,%d,%d\n"%(id, frequency, recommend))
