@@ -1,30 +1,30 @@
-var width = 1200,
-    height = 1000;
-
-var color = d3.scale.category20();
-
-var force = d3.layout.force()
-    .charge(-120)
-    .linkDistance(500)
-    .size([width, height]);
-
-var svg = d3.select("body").append("svg")
-    .attr("width", width)
-    .attr("height", height);
-
 d3.json("data/force.json", function(error, graph) {
+  var width = 900,
+      height = 690;
+
+  var color = d3.scale.category20();
+
+  var force = d3.layout.force()
+      .charge(-10)
+      .linkDistance(400)
+      .size([width, height]);
+
+  var svg_force = d3.select(".force").append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
   force
       .nodes(graph.nodes)
       .links(graph.links)
       .start();
 
-  var link = svg.selectAll(".link")
+  var link = svg_force.selectAll(".link")
       .data(graph.links)
     .enter().append("line")
       .attr("class", "link")
       .style("stroke-width", function(d) { return Math.sqrt(d.value); });
 
-  var node = svg.selectAll(".node")
+  var node = svg_force.selectAll(".node")
       .data(graph.nodes)
     .enter().append("circle")
       .attr("class", "node")
@@ -32,10 +32,11 @@ d3.json("data/force.json", function(error, graph) {
       .style("fill", function(d) { return color(d.group); })
       .call(force.drag);
 
-  var name = svg.selectAll(".text")
+  var name = svg_force.selectAll(".text")
       .data(graph.nodes)
     .enter().append("text")
       .text(function(d){return d.name;})
+      .attr("font-size","15")
       .call(force.drag);
 
   node.append("title")

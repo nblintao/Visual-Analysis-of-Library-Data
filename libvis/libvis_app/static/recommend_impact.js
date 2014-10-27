@@ -6,22 +6,27 @@ d3.csv("data/id_frequency_recommend.csv",function(data){
     // console.log(data);
     var maxfrequency = d3.max(data.map(function(d){return d.frequency;}));
     // console.log(maxfrequency);
-    var svg = d3.select("body").append("svg");
+
+    var width = 1600;
+    var pix_height = 100;
+    var pix_width = width / data.length;
+    var recommend_offset = 20;
+
+    var svg = d3.select(".recommend").append("svg")
+        .attr("width",width);
     var bar = svg.selectAll("g")
     var pix = bar.data(data)
       .enter();
 
-    var pix_height = 100;
-    var pix_width = 0.10;
-    var recommend_offset = 20;
+    var color = function(d){
+        if(d.recommend == '0')
+            return "hsl(240,"+d.frequency/maxfrequency*100+"%,50%)";
+        else
+            return "green";
+    }
 
     pix.append("rect")
-        .style("fill",function(d){
-            if(d.recommend == '0')
-                return "hsl(240,"+d.frequency/maxfrequency*100+"%,50%)";
-            else
-                return "red";
-        })
+        .style("fill",color)
         .attr("width",pix_width)
         .attr("height",pix_height)
         .attr("transform", function(d,i){
