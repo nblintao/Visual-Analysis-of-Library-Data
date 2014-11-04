@@ -8,7 +8,8 @@ conn.current_schema = 'ZJU50'
 
 
 c=conn.cursor()
-c.execute('select Z13_TITLE from Z13 where rownum<=1000')
+# c.execute('select Z13_TITLE from Z13 where rownum<=1000')
+c.execute("select * from Z309 where Z309_REC_KEY like 'ID207010%'")
 rows = c.fetchall()
 
 for row in rows:
