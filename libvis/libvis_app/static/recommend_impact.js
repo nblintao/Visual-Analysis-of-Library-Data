@@ -1,4 +1,4 @@
-d3.csv("data/id_frequency_recommend.csv",function(data){
+d3.csv("static/data/id_frequency_recommend.csv",function(data){
     data.forEach(function(d){
         d.frequency = +d.frequency;
     })

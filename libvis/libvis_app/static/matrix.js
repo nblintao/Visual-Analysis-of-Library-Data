@@ -13,7 +13,7 @@ var svg_matrix = d3.select(".matrix").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.json("data/force.json", function(miserables) {
+d3.json("static/data/force.json", function(miserables) {
   var matrix = [],
       nodes = miserables.nodes,
       n = nodes.length;

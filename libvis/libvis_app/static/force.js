@@ -1,4 +1,4 @@
-d3.json("data/force.json", function(error, graph) {
+d3.json("static/data/force.json", function(error, graph) {
   var width = 900,
       height = 690;
 
