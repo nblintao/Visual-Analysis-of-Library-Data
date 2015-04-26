@@ -4,33 +4,29 @@
 <head>
     <meta  charset="utf-8" xmlns="http://www.w3.org/1999/html">
     <title>LibVis</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/old.css' %}">
 </head>
 
 <body>
 
+<button id="query" onclick="startQuery()">Query</button>
+<div id="Sselect" style="height:300px;width:1000px;align:center;border:2px solid #E3E3E3;margin-top:2px"></div>
 
-<div class="matrix" style="display:inline">
-<select id="order" style="float:left;position:absolute">
-  <option value="name">by Name</option>
-  <option value="count">by Frequency</option>
-  <option value="group">by Cluster</option>
-</select>
-</div>
+<script type="text/javascript" src="{% static 'js/d3.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/echarts-all.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/line.js'%}"></script>
 
-<div class="force" style="display:inline;float:right"></div>
+<script type="text/javascript">
+    function startQuery () {
+        d3.json("/testQuery",function(data){
+            // console.log(data);
+            updateLine(data);
+            
+        })
+        console.log("startQuery");
+    }
 
-<div class="recommend" style="margin:0px auto"></div>
 
-    <script type="text/javascript" src="{% static 'js/underscore.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/backbone.js' %}"></script>    
-    <script type="text/javascript" src="{% static 'js/backbone.marionette.js' %}"></script> 
-    <script type="text/javascript" src="{% static 'js/d3.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/jquery-1.10.2.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/jquery-ui.js' %}"></script>
+</script>
 
-    <script type="text/javascript" src="{% static 'recommend_impact.js' %}"></script>
-    <script type="text/javascript" src="{% static 'force.js' %}"></script>   
-    <script type="text/javascript" src="{% static 'matrix.js' %}"></script>
 </body>
 </html>
