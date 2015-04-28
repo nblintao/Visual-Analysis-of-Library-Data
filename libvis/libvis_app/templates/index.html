@@ -7,6 +7,7 @@
 </head>
 
 <body>
+<input type="text" id="i0"></input>
 
 <button id="query" onclick="startQuery()">Query</button>
 <div id="Sselect" style="height:300px;width:1000px;align:center;border:2px solid #E3E3E3;margin-top:2px"></div>
@@ -17,8 +18,16 @@
 
 <script type="text/javascript">
     function startQuery () {
-        d3.json("/testQuery",function(data){
+        searchKeys = document.getElementById("i0").value;
+        searchKeyList = searchKeys.split(" ").join("_")
+        url = "/testQuery/"+searchKeyList;
+        console.log(url);
+
+        // d3.json("/testQuery",function(data){
+        d3.json(url, function(data){
+
             // console.log(data);
+
             updateLine(data);
             
         })

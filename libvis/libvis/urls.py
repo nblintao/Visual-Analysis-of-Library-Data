@@ -10,5 +10,6 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'libvis_app.views.index'),
-    url(r'^testQuery$', 'libvis_app.views.testQuery'),
+    # url(r'^testQuery$', 'libvis_app.views.testQuery'),
+    url(r'^testQuery/(.*)$', 'libvis_app.views.testQuery'),
 )

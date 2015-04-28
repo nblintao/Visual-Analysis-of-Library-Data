@@ -9,8 +9,9 @@ def index(request):
 
     return render_to_response("index.html")
 
-def testQuery(request):
+def testQuery(request,keys):
+    keyList = keys.split("_")
     conn = Connection()
-    response_data = conn.testQuery()     
+    response_data = conn.testQuery(keyList)     
     return HttpResponse(json.dumps(response_data), content_type="application/json")
     

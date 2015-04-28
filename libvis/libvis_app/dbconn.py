@@ -12,10 +12,10 @@ class Connection():
     def __del__(self):
         self.conn.close()
     
-    def testQuery(self):
+    def testQuery(self,keywords):
         c=self.conn.cursor()
         # c.execute('select Z13_TITLE from Z13 where rownum<=1000')
-        keywords = ['Visual','C++',u'学']
+        # keywords = ['Visual','C++',u'学']
         sql = "select Z13_REC_KEY, Z13_TITLE from Z13 where rownum<=1000"
         for keyword in keywords:
             sql += " and Z13_TITLE like '%"+keyword+"%'"
