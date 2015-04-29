@@ -14,4 +14,18 @@ def testQuery(request,keys):
     conn = Connection()
     response_data = conn.testQuery(keyList)     
     return HttpResponse(json.dumps(response_data), content_type="application/json")
-    
+
+
+def bookList(request,keys):
+    keyList = keys.split("_")
+    conn = Connection()
+    response_data = conn.bookList(keyList)     
+    return HttpResponse(json.dumps(response_data), content_type="application/json")   
+
+
+def timeSerial(request,keys):
+    keyList = keys.split("_")
+    conn = Connection()
+    response_data = conn.timeSerial(keyList)     
+    return HttpResponse(json.dumps(response_data), content_type="application/json")   
+     

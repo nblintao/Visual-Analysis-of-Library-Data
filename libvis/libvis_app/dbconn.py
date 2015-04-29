@@ -8,9 +8,12 @@ class Connection():
         dsn = cx_Oracle.makedsn(oracle_conn_settings['host'], oracle_conn_settings['port'], service_name = oracle_conn_settings['service_name'])
         self.conn = cx_Oracle.connect(oracle_conn_settings['user'], oracle_conn_settings['password'], dsn)
         self.conn.current_schema = 'ZJU50'
+        self.c = self.conn.cursor()
     
     def __del__(self):
+        self.c.close()
         self.conn.close()
+        
     
     def testQuery(self,keywords):
         c=self.conn.cursor()
@@ -38,6 +41,38 @@ class Connection():
         c.close()
         return r
 
+    def bookList(self,keywords):
+        print "Enter bookList"
+        limit = 1000
+        sql = "select Z13_REC_KEY, Z13_TITLE, Z13_AUTHOR, Z13_IMPRINT, Z13_ISBN_ISSN from Z13 where rownum<="+str(limit)
+        for keyword in keywords:
+            sql += " and Z13_TITLE like '%"+keyword+"%'"
+        self.c.execute(sql)
+        rows = self.c.fetchall()
+        r = []
+        for row in rows:
+            book={}
+            book['key'] = row[0]
+            book['title'] = row[1]
+            book['author'] = row[2]
+            book['imprint'] = row[3]
+            book['isbn'] = row[4]
+            r.append(book)
+        print "Exit bookList"
+        return r
+
+    def timeSerial(self,keywords):
+        print "Enter timeSerial"
+        r = self.bookList(keywords)
+        # print r
+        for book in r:
+            sql="select Z309_DATE_X from Z309 where Z309_REC_KEY_3 like '"+book['key']+"%'"
+            sql+=" and (Z309_ACTION = 9 or Z309_ACTION = 1)"
+            self.c.execute(sql)
+            ts = self.c.fetchall()
+            book['timeserial'] = [x[0] for x in ts]
+        print "Exit timeSerial"
+        return r
 
 
 # american_america.AL32UTF8

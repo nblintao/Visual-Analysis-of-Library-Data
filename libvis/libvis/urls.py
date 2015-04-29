@@ -12,4 +12,6 @@ urlpatterns = patterns('',
     url(r'^$', 'libvis_app.views.index'),
     # url(r'^testQuery$', 'libvis_app.views.testQuery'),
     url(r'^testQuery/(.*)$', 'libvis_app.views.testQuery'),
+    url(r'^bookList/(.*)$', 'libvis_app.views.bookList'),
+    url(r'^timeSerial/(.*)$', 'libvis_app.views.timeSerial'),
 )

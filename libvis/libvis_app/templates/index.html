@@ -4,34 +4,69 @@
 <head>
     <meta  charset="utf-8" xmlns="http://www.w3.org/1999/html">
     <title>LibVis</title>
+    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
+    <script src="{% static 'js/jquery-2.1.3.min.js'%}"></script>
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>    
 </head>
 
 <body>
 <input type="text" id="i0"></input>
 
-<button id="query" onclick="startQuery()">Query</button>
-<div id="Sselect" style="height:300px;width:1000px;align:center;border:2px solid #E3E3E3;margin-top:2px"></div>
+<button id="query" onclick="startQuery()">查询</button>
+<div class="panel panel-default">
+  <div class="panel-heading"><h1>每月借阅次数统计</h1></div>
+  <div class="panel-body">
+    <div id="lineChart" style="height:300px;width:1000px;align:center;border:2px solid #E3E3E3;margin-top:2px"></div>
+  </div>
+</div>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading"><h1>相关图书列表</h1></div>
+  <div class="panel-body">
+    <table class="table table-hover">
+       <thead>
+          <tr>
+             <th>书名</th>
+             <th>作者</th>
+             <th>出版社</th>
+             <th>ISBN</th>
+          </tr>
+       </thead>
+       <tbody id="bookTable">
+       </tbody>
+    </table>
+  </div>
+</div>
+
+
 
 <script type="text/javascript" src="{% static 'js/d3.js'%}"></script>
 <script type="text/javascript" src="{% static 'js/echarts-all.js'%}"></script>
 <script type="text/javascript" src="{% static 'js/line.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/table.js'%}"></script>
+
 
 <script type="text/javascript">
     function startQuery () {
         searchKeys = document.getElementById("i0").value;
         searchKeyList = searchKeys.split(" ").join("_")
-        url = "/testQuery/"+searchKeyList;
-        console.log(url);
+        resetTable();
+        resetLine();
 
-        // d3.json("/testQuery",function(data){
-        d3.json(url, function(data){
-
+        d3.json("/bookList/"+searchKeyList, function(data){
             // console.log(data);
-
-            updateLine(data);
-            
+            updateTable(data);            
         })
-        console.log("startQuery");
+
+        d3.json("/timeSerial/"+searchKeyList, function(data){
+            // console.log(data);
+            updateLine(data);
+        })
+
+
+
+        // console.log("startQuery");
     }
 
 

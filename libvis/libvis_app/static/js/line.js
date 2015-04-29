@@ -1,11 +1,12 @@
-var myChart = echarts.init(document.getElementById('Sselect')); 
-                
+var myChart = echarts.init(document.getElementById('lineChart')); 
+
 var option = {
-    title : {
-        text: '每月借阅次数统计'
-    },
+    // title : {
+    //     text: '每月借阅次数统计'
+    // },
     toolbox: {
-        show : true,
+        // show : true,
+        show : false,
         feature : {
             mark : {show: true},
             dataZoom : {show: true},
@@ -18,7 +19,7 @@ var option = {
     tooltip : {
         trigger: 'axis'
     },
-    calculable : true,
+    // calculable : true,
     dataZoom : {
         show : true,
         realtime : true,
@@ -35,8 +36,8 @@ var option = {
     xAxis : [
         {
             type : 'category',
-            boundaryGap : false,
-            data:timestampRecord
+            boundaryGap : false
+            // ,data:timestampRecord
         }
     ],
     yAxis : [
@@ -47,7 +48,7 @@ var option = {
     series : [
         {
             name:'借阅次数',
-            type:'line',
+            type:'line'
             // data:function (){
             //     var list = [];
             //     for (var i = 1; i <= 30; i++) {
@@ -55,11 +56,12 @@ var option = {
             //     }
             //     return list;
             // }()
-            data:valueRecord
+            // ,data:valueRecord
         }
     ],
     backgroundColor: 'rgba(0,0,0,0)'
 };
+
 
 function getTimerecord(data){
     timerecord = {};
@@ -106,11 +108,14 @@ function getTimestamp(timerecord){
     return timestamp;
 }
 
-function updateLine(data){
+function resetLine(){
+    myChart.clear();
+}
 
+function updateLine(data){
     timerecord = getTimerecord(data);
-    timestamp = getTimestamp(timerecord);
-    value = timestamp.map(function(d){
+    var timestamp = getTimestamp(timerecord);
+    var value = timestamp.map(function(d){
         var r = timerecord[d]
         if(r)
             return r;
@@ -119,9 +124,10 @@ function updateLine(data){
     })
     console.log(timestamp);
     console.log(value);
-// valueRecord
+
     // console.log(timerecord);
     option.series[0].data = value;
     option.xAxis[0].data = timestamp;
     myChart.setOption(option); 
+    // myChart.refresh();
 }
