@@ -10,20 +10,33 @@
 </head>
 
 <body>
-<input type="text" id="i0"></input>
 
-<button id="query" onclick="startQuery()">查询</button>
+<div class="container-fluid">
+<div class="page-header">
+  <h1 align="middle">图书借阅数据可视分析系统 <small>浙江大学SRTP项目</small></h1>
+</div>
+
+<div class="col-md-4">
+    <input type="text"  class="form-control" id="i0"></input>
+    <button class="btn btn-default" id="query" onclick="startQuery()">查询</button>
+</div>
+
+<div class="col-md-8">
+
 <div class="panel panel-default">
-  <div class="panel-heading"><h1>每月借阅次数统计</h1></div>
-  <div class="panel-body">
-    <div id="lineChart" style="height:300px;width:1000px;align:center;border:2px solid #E3E3E3;margin-top:2px"></div>
-  </div>
+    <div class="panel-heading">
+        <h2>每月借阅次数统计</h2>
+    </div>
+    <!-- <div class="panel-body"> -->
+        <!-- <div id="lineChart" style="height:300px;width:1000px;align:center;border:2px solid #E3E3E3;margin-top:2px"> -->
+        <div id="lineChart" style="height:300px"></div>
+    <!-- </div> -->
 </div>
 
 
 <div class="panel panel-default">
-  <div class="panel-heading"><h1>相关图书列表</h1></div>
-  <div class="panel-body">
+  <div class="panel-heading"><h2>相关图书列表</h2></div>
+  <div class="panel-body" style="height:500px;overflow:scroll">
     <table class="table table-hover">
        <thead>
           <tr>
@@ -33,13 +46,14 @@
              <th>ISBN</th>
           </tr>
        </thead>
-       <tbody id="bookTable">
+       <tbody id="bookTable" >
        </tbody>
     </table>
   </div>
 </div>
 
-
+</div>
+</div>
 
 <script type="text/javascript" src="{% static 'js/d3.js'%}"></script>
 <script type="text/javascript" src="{% static 'js/echarts-all.js'%}"></script>

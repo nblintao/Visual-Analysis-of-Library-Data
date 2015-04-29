@@ -1,9 +1,11 @@
 var myChart = echarts.init(document.getElementById('lineChart')); 
 
 var option = {
-    // title : {
-    //     text: '每月借阅次数统计'
-    // },
+    title : {
+        text: '每月借阅次数统计',
+        padding: '0px',
+        show: false
+    },
     toolbox: {
         // show : true,
         show : false,
@@ -122,8 +124,8 @@ function updateLine(data){
         else
             return 0;
     })
-    console.log(timestamp);
-    console.log(value);
+    // console.log(timestamp);
+    // console.log(value);
 
     // console.log(timerecord);
     option.series[0].data = value;
