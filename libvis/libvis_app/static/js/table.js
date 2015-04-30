@@ -7,11 +7,11 @@ function updateTable (data) {
         .data(data)
       .enter().append("tr")
         .html(function(d){
-            str = ""
-            str += "<td>"+ d.title +"</td>" 
-            str += "<td>"+ d.author +"</td>" 
-            str += "<td>"+ d.imprint +"</td>" 
-            str += "<td>"+ d.isbn +"</td>" 
+            var str = "";
+            str += "<td>"+ d.title +"</td>";
+            str += "<td>"+ d.author +"</td>";
+            str += "<td>"+ d.imprint +"</td>";
+            str += "<td>"+ d.isbn +"</td>";
             return str;
         });    
 }

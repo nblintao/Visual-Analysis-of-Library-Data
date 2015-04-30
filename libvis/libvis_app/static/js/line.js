@@ -66,11 +66,11 @@ var option = {
 
 
 function getTimerecord(data){
-    timerecord = {};
+    var timerecord = {};
     for (var i = data.length - 1; i >= 0; i--) {
-        timeserial = data[i].timeserial;
+        var timeserial = data[i].timeserial;
         for (var j = timeserial.length - 1; j >= 0; j--) {
-            t = timeserial[j].substring(0,6);
+            var t = timeserial[j].substring(0,6);
             if(timerecord[t])
                 timerecord[t] += 1;
             else
@@ -81,16 +81,16 @@ function getTimerecord(data){
 }
 
 function getTimestamp(timerecord){
-    keys=[];
+    var keys=[];
     for (var key in timerecord)
         keys.push(key);
     keys.sort();
-    begin = keys[0];
-    end = keys[keys.length-1];
-    timestamp = [];
+    var begin = keys[0];
+    var end = keys[keys.length-1];
+    var timestamp = [];
     for(var time=begin; time!=end; ){
-        year = +time.substring(0,4);
-        month = +time.substring(4,6);
+        var year = +time.substring(0,4);
+        var month = +time.substring(4,6);
         timestamp.push(time);
         if(month!=12){
             month++;
@@ -99,8 +99,8 @@ function getTimestamp(timerecord){
             year++;
             month=1;
         }
-        time=year.toString()
-        m=month.toString()
+        time=year.toString();
+        var m=month.toString();
         if (m.length==1){
             time+='0'+m;
         }else{
@@ -115,15 +115,15 @@ function resetLine(){
 }
 
 function updateLine(data){
-    timerecord = getTimerecord(data);
+    var timerecord = getTimerecord(data);
     var timestamp = getTimestamp(timerecord);
     var value = timestamp.map(function(d){
-        var r = timerecord[d]
+        var r = timerecord[d];
         if(r)
             return r;
         else
             return 0;
-    })
+    });
     // console.log(timestamp);
     // console.log(value);
 

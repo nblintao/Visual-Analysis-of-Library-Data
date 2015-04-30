@@ -63,20 +63,20 @@
 
 <script type="text/javascript">
     function startQuery () {
-        searchKeys = document.getElementById("i0").value;
-        searchKeyList = searchKeys.split(" ").join("_")
+        var searchKeys = document.getElementById("i0").value;
+        var searchKeyList = searchKeys.split(" ").join("_");
         resetTable();
         resetLine();
 
         d3.json("/bookList/"+searchKeyList, function(data){
             // console.log(data);
             updateTable(data);            
-        })
+        });
 
         d3.json("/timeSerial/"+searchKeyList, function(data){
             // console.log(data);
             updateLine(data);
-        })
+        });
 
 
 
