@@ -44,7 +44,7 @@ class Connection():
     def bookList(self,keywords):
         print "Enter bookList"
         limit = 1000
-        sql = "select Z13_REC_KEY, Z13_TITLE, Z13_AUTHOR, Z13_IMPRINT, Z13_ISBN_ISSN from Z13 where rownum<="+str(limit)
+        sql = "select Z13_REC_KEY, Z13_TITLE, Z13_AUTHOR, Z13_IMPRINT, Z13_ISBN_ISSN, Z13_CALL_NO from Z13 where rownum<="+str(limit)
         for keyword in keywords:
             sql += " and Z13_TITLE like '%"+keyword+"%'"
         self.c.execute(sql)
@@ -57,6 +57,7 @@ class Connection():
             book['author'] = row[2]
             book['imprint'] = row[3]
             book['isbn'] = row[4]
+            book['callno'] = row[5]
             r.append(book)
         print "Exit bookList"
         return r

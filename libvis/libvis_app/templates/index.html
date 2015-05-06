@@ -20,6 +20,12 @@
             <div class="col-md-4">
                 <input type="text" class="form-control" id="i0"></input>
                 <button class="btn btn-default" id="query" onclick="startQuery()">查询</button>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2>相关图书分类</h2>
+                    </div>
+                    <div id="treemap" style="height:500px"></div>
+                </div>
             </div>
             <div class="col-md-8">
                 <div class="panel panel-default">
@@ -55,27 +61,30 @@
         <script type="text/javascript" src="{% static 'js/echarts-all.js'%}"></script>
         <script type="text/javascript" src="{% static 'js/line.js'%}"></script>
         <script type="text/javascript" src="{% static 'js/table.js'%}"></script>
+        <script type="text/javascript" src="{% static 'js/treemap.js'%}"></script>
         <script type="text/javascript">
             function startQuery () {
-                var searchKeys = document.getElementById("i0").value;
-                var searchKeyList = searchKeys.split(" ").join("_");
-                resetTable();
-                resetLine();
-        
-                d3.json("/bookList/"+searchKeyList, function(data){
-                    // console.log(data);
-                    updateTable(data);            
-                });
-        
-                d3.json("/timeSerial/"+searchKeyList, function(data){
-                    // console.log(data);
-                    updateLine(data);
-                });
-        
-        
-        
-                // console.log("startQuery");
-            }
+                    var searchKeys = document.getElementById("i0").value;
+                    var searchKeyList = searchKeys.split(" ").join("_");
+                    resetTable();
+                    resetLine();
+                    resetTreemap();
+            
+                    d3.json("/bookList/"+searchKeyList, function(data){
+                        // console.log(data);
+                        updateTable(data);
+                        updateTreemap(data);
+                    });
+            
+                    d3.json("/timeSerial/"+searchKeyList, function(data){
+                        // console.log(data);
+                        updateLine(data);
+                    });
+            
+            
+            
+                    // console.log("startQuery");
+                }
         </script>
     </body>
 
