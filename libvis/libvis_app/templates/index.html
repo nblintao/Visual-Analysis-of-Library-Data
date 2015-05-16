@@ -21,8 +21,12 @@
                 </h1>
             </div>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="i0"></input>
-                <button class="btn btn-default" id="query" onclick="startQuery()">查询</button>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <button class="btn btn-primary btn-lg" id="query" onclick="startQuery()">查询分析</button>
+                    </div>
+                    <input type="text" class="form-control" id="i0"></input>
+                </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h2>相关图书分类</h2>
@@ -42,6 +46,10 @@
                     </div>
                     <div id="treemap" style="height:500px"></div>
                 </div>
+<!--                <div class="panel panel-default">
+                    <iframe name="iframe0" width="100%" frameborder=0></iframe>
+                </div>-->
+                
             </div>
             <div class="col-md-8">
                 <div class="panel panel-default">

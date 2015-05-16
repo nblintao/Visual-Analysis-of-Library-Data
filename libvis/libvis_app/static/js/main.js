@@ -5,8 +5,20 @@ $(function () {
 	});
 });
 var GbookList;
-function startQuery() {
-	var searchKeys = document.getElementById("i0").value.split(",");
+
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+
+function startQuery() {	
+	var searchKeys = document.getElementById("i0").value;
+//	console.log(searchKeys);
+	if(searchKeys ==""){
+		alert("请至少输入一个查询关键词");
+		return;
+	}
+	
+	searchKeys = searchKeys.split(",");
 	var searchKeyList = searchKeys.join("_");
 	resetTable();
 	resetLine();
