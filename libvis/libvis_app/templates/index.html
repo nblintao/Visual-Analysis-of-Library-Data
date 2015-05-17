@@ -20,7 +20,7 @@
                     <small>浙江大学SRTP项目</small>
                 </h1>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <button class="btn btn-primary btn-lg" id="query" onclick="startQuery()">查询分析</button>
@@ -29,7 +29,11 @@
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
+                    <div class="row">
+                    <div class="col-md-7">
                         <h2>相关图书分类</h2>
+                    </div>
+                    <div class="col-md-5">
                         <div class="btn-group">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">显示类型
                                 <span class="caret"></span>
@@ -43,6 +47,10 @@
                                 </li>
                             </ul>
                         </div>
+                        <button type="button" class="btn btn-default" onclick="clearCallList()">清除分类</button>
+                    </div>
+                    </div>
+                    <div id='tagList'></div>
                     </div>
                     <div id="treemap" style="height:500px"></div>
                 </div>
@@ -51,7 +59,7 @@
                 </div>-->
                 
             </div>
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h2>每月借阅次数统计</h2>

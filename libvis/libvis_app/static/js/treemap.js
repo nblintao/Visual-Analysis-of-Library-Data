@@ -57,6 +57,7 @@ function generateTree(info, data) {
 function getAvailNodes(fullTree) {
 	var availTree = {};
 	availTree['name'] = fullTree['name'];
+	availTree['code'] = fullTree['code'];
 	if (fullTree['children']) {
 		var children = [];
 		for (var ichild in fullTree['children']) {
@@ -447,6 +448,8 @@ function updateTreemap(data) {
 		// Toggle children on click.
 
 		function click(d) {
+			// console.log(d);
+			addCallNoTag(d);
 			if (d3.event.defaultPrevented) return; // click suppressed
 			d = toggleChildren(d);
 			update(d);

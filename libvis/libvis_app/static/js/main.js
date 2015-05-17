@@ -11,7 +11,7 @@ $(function () {
 })
 
 function startQuery() {	
-	var searchKeys = document.getElementById("i0").value;
+	var searchKeys = document.getElementById("i0").value + getCallList();
 //	console.log(searchKeys);
 	if(searchKeys ==""){
 		alert("请至少输入一个查询关键词");
@@ -39,4 +39,35 @@ function startQuery() {
             
             
 	// console.log("startQuery");
+}
+
+var CallList = []
+
+function clearCallList(){
+	CallList = []
+	updateCallList();
+}
+
+function addCallNoTag(tag){
+	CallList.push(tag);
+	updateCallList();
+}
+
+function getCallList(){
+	str = ""
+	for (var i = 0; i < CallList.length; i++) {
+		s = CallList[i];
+		str+= '_CALL:'+s.code;
+	};
+	return str;
+}
+
+function updateCallList () {
+	str = ""
+	for (var i = 0; i < CallList.length; i++) {
+		s = CallList[i];
+		str+= '<span class="label label-default">'+s.name+'</span> ';
+	};
+	// console.log(str);
+	document.getElementById('tagList').innerHTML = str;
 }

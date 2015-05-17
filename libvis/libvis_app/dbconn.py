@@ -45,8 +45,21 @@ class Connection():
         print "Enter bookList"
         limit = 1000
         sql = "select Z13_REC_KEY, Z13_TITLE, Z13_AUTHOR, Z13_IMPRINT, Z13_ISBN_ISSN, Z13_CALL_NO from Z13 where rownum<="+str(limit)
+        ISBNScope = []
         for keyword in keywords:
-            sql += " and Z13_TITLE like '%"+keyword+"%'"
+            if keyword.startswith('CALL:'):
+                ISBNScope.append(str(keyword[5:]))
+            else:
+                sql += " and Z13_TITLE like '%"+keyword+"%'"
+        print(ISBNScope)
+        if len(ISBNScope):
+            sql += ' and ('
+            for i in xrange(0,len(ISBNScope)):
+                if i!=0:
+                    sql += ' or '
+                sql += " Z13_CALL_NO like '" + ISBNScope[i] + "%' "
+            sql += ')'
+        print(sql)
         self.c.execute(sql)
         rows = self.c.fetchall()
         r = []

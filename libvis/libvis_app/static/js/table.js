@@ -16,11 +16,11 @@ function updateTable(data) {
             d.isbn = '';
         }
 
-        if (d.auther == 'null') {
-            d.auther = '';
+        if (!d.author || d.author == 'null') {
+            d.author = '';
         }
 
-        if (d.imprint == 'null') {
+        if (!d.imprint || d.imprint == 'null') {
             d.imprint = '';
         }
 
