@@ -10,7 +10,8 @@ function updateTable(data) {
         var str = "";
         var url = "";
         if (d.isbn && d.isbn != 'null') {
-            url = "http://webpac.zju.edu.cn/F/LDK7TCKI2F1BCSB281JMD682LCUUKE9ISDAH5YQVA6BC99HBE6-29330?find_base=ZJU01&find_base=ZJU09&func=find-m&find_code=ISB&request=" + d.isbn + "&local_base=&x=19&y=14&filter_code_1=WLN&filter_request_1=&filter_code_2=WYR&filter_request_2=&filter_code_3=WYR&filter_request_3=&filter_code_4=WFM&filter_request_4=&filter_code_5=WSL&filter_request_5=";
+            url = "http://webpac.zju.edu.cn/F/VP3A9N82U2D5TGV9ESMUJX11I4N1GTDR7X9U9BD2XQ8B81PCLI-38819?func=find-b&find_code=ISB&request=" + d.isbn + "&local_base=ZJU01";
+            //TODO This should be changed in realistic environment!
         }
         else {
             d.isbn = '';
